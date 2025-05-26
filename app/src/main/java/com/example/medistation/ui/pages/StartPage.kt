@@ -24,13 +24,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavController
 import com.example.medistation.R
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
 
 
 @Composable
-fun StartPage(modifier: Modifier = Modifier) {
+fun StartPage(navController: NavController, modifier: Modifier = Modifier) {
     Box (
         modifier = modifier
             .fillMaxSize()
@@ -85,5 +86,8 @@ fun StartPage(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun StartPagePreview() {
-    StartPage()
+    StartPage(
+        navController = TODO(),
+        modifier = TODO()
+    )
 }

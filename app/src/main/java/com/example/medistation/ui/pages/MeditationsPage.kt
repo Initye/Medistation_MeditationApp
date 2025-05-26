@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.medistation.R
+import com.example.medistation.ui.meditationSelect.Element
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
 
@@ -52,11 +54,19 @@ fun MeditationPage(modifier: Modifier = Modifier) {
             Spacer(modifier.padding(20.dp))
             Text(
                 text = "Explore\nmeditations",
+                textAlign = TextAlign.Center,
                 fontSize = 40.sp,
                 color = Color.White,
                 fontFamily = itimFont, fontWeight = FontWeight.Normal
             )
+            Spacer(Modifier.height(24.dp))
             //Place to implement buttons for selection of meditation
+            LazyColumn {
+                items(2) {
+                    Element()
+                    Spacer(Modifier.height(8.dp))
+                }
+            }
         }
     }
 }
