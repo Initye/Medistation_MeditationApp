@@ -1,7 +1,9 @@
 package com.example.medistation.ui.meditationSelect
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,18 +27,24 @@ import com.example.medistation.R
 import com.example.medistation.ui.theme.itimFont
 
 @Composable
-fun Element(modifier: Modifier = Modifier) {
+fun Element(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    title: String,
+    image: Int,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(BackgroundElement),
+            .background(BackgroundElement)
+            .clickable{ onClick( ) }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Relax",
+                text = title,
                 fontSize = 36.sp,
                 color = Color.White,
                 modifier = Modifier.padding(start = 40.dp),
@@ -45,16 +53,27 @@ fun Element(modifier: Modifier = Modifier) {
             Spacer(modifier.weight(1f))
             Image(
                 modifier = Modifier.size(100.dp),
-                painter = painterResource(R.drawable.meditate),
+                painter = painterResource(id = image),
                 contentDescription = ""
             )
         }
     }
 }
-
+//Make a dataclass for elements displaying
+data class MeditationItem (
+    val title: String,
+    val image: Int,
+    val destination: String
+)
+//Set values for dataclass
+val meditations = listOf(
+    MeditationItem("Relax", R.drawable.meditate, "relaxMed"),
+    MeditationItem("Calm", R.drawable.meditate, "calmMed"),
+    MeditationItem("Rain", R.drawable.meditate, "rainMed"),
+)
 
 @Preview
 @Composable
 fun ElementPreview() {
-    Element()
+    Element(onClick = {}, title = "", image = R.drawable.meditate)
 }

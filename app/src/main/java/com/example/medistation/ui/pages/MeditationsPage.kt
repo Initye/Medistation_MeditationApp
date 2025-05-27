@@ -24,14 +24,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavController
 import com.example.medistation.R
 import com.example.medistation.ui.meditationSelect.Element
+import com.example.medistation.ui.meditationSelect.meditations
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
+import androidx.compose.foundation.lazy.items
 
 
 @Composable
-fun MeditationPage(modifier: Modifier = Modifier) {
+fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) {
     Box (
         modifier = modifier
             .fillMaxSize()
@@ -60,10 +63,16 @@ fun MeditationPage(modifier: Modifier = Modifier) {
                 fontFamily = itimFont, fontWeight = FontWeight.Normal
             )
             Spacer(Modifier.height(24.dp))
-            //Place to implement buttons for selection of meditation
+
             LazyColumn {
-                items(2) {
-                    Element()
+                items(meditations) { item ->
+                    Element(
+                        title = item.title,
+                        image = item.image,
+                        onClick = {
+                            navController.navigate(item.destination)
+                        }
+                    )
                     Spacer(Modifier.height(8.dp))
                 }
             }
@@ -74,5 +83,5 @@ fun MeditationPage(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun MeditationPagePreview() {
-    MeditationPage()
+    MeditationPage(navController = TODO())
 }
