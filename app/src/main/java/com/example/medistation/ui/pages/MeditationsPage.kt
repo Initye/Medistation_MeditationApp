@@ -31,6 +31,9 @@ import com.example.medistation.ui.meditationSelect.meditations
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
 import androidx.compose.foundation.lazy.items
+import androidx.navigation.compose.rememberNavController
+import com.example.medistation.ui.meditationSelect.BubbleBackground
+
 
 
 @Composable
@@ -40,6 +43,7 @@ fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) 
             .fillMaxSize()
             .background(BackgroundPage)
     ){
+        BubbleBackground()
         Column(
             modifier = modifier
                 .fillMaxWidth()
@@ -83,5 +87,5 @@ fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) 
 @Preview
 @Composable
 fun MeditationPagePreview() {
-    MeditationPage(navController = TODO())
+    MeditationPage(rememberNavController())
 }

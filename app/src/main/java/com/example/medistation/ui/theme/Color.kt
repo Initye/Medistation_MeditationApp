@@ -13,3 +13,6 @@ val Pink40 = Color(0xFF7D5260)
 val BackgroundPage = Color(0xFF341593)
 val BackgroundElement = Color(0xFF5927F3)
 
+
+val bubblesElement = Color(0xFF4217C6)
+
