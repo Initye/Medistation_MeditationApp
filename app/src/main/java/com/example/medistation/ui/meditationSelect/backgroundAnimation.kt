@@ -15,11 +15,6 @@ import com.example.medistation.ui.theme.bubblesElement
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
-data class Bubble(
-    val size: Float,
-    val color: Color,
-)
-
 @Composable
 fun BubbleBackground(
 ) {
