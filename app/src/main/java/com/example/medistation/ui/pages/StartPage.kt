@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.medistation.R
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
@@ -87,7 +88,6 @@ fun StartPage(navController: NavController, modifier: Modifier = Modifier) {
 @Composable
 fun StartPagePreview() {
     StartPage(
-        navController = TODO(),
-        modifier = TODO()
+        navController = rememberNavController()
     )
 }

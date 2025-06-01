@@ -68,12 +68,14 @@ data class MeditationItem (
 //Set values for dataclass
 val meditations = listOf(
     MeditationItem("Relax", R.drawable.meditate, "relaxMed"),
-    MeditationItem("Calm", R.drawable.meditate, "calmMed"),
-    MeditationItem("Rain", R.drawable.meditate, "rainMed"),
+    MeditationItem("Calm", R.drawable.meditate_calm, "calmMed"),
+    MeditationItem("Rain", R.drawable.meditate_rain, "rainMed"),
+    MeditationItem("Focus", R.drawable.meditate_focus, "focusMed"),
+    MeditationItem("Sleep", R.drawable.meditate_sleep, "sleepMed"),
 )
 
 @Preview
 @Composable
 fun ElementPreview() {
-    Element(onClick = {}, title = "", image = R.drawable.meditate)
+    Element(onClick = {}, title = "Design", image = R.drawable.meditate)
 }

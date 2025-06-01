@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,7 +50,8 @@ fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) 
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(top = 150.dp),
+                .padding(top = 100.dp)
+                .windowInsetsPadding(WindowInsets.systemBars),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
 
@@ -58,17 +62,20 @@ fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) 
                 color = Color.White,
                 fontFamily = itimFont, fontWeight = FontWeight.Normal
             )
-            Spacer(modifier.padding(20.dp))
+            Spacer(modifier.padding(10.dp))
             Text(
                 text = "Explore\nmeditations",
                 textAlign = TextAlign.Center,
-                fontSize = 40.sp,
+                fontSize = 36.sp,
                 color = Color.White,
                 fontFamily = itimFont, fontWeight = FontWeight.Normal
             )
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(40.dp))
 
-            LazyColumn {
+            LazyColumn(
+                modifier = modifier
+                    .padding(start = 10.dp, end = 10.dp)
+            ) {
                 items(meditations) { item ->
                     Element(
                         title = item.title,

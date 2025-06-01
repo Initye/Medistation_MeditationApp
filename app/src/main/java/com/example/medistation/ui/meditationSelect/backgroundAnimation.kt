@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.roundToIntSize
@@ -36,7 +35,6 @@ fun BubbleBackground(
             }
         }
     }
-
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
@@ -56,6 +54,6 @@ fun BubbleBackground(
 
 @Preview
 @Composable
-fun PreviewSnowFlake(){
+fun PreviewBubbles(){
     BubbleBackground()
 }

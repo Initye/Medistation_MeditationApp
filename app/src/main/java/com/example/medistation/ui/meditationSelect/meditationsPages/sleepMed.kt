@@ -1,6 +1,5 @@
 package com.example.medistation.ui.meditationSelect.meditationsPages
 
-import android.media.MediaPlayer
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandIn
@@ -20,7 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,8 +34,6 @@ import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.Purple80
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.example.medistation.R
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
@@ -47,37 +43,25 @@ import com.example.medistation.ui.theme.itimFont
 import kotlinx.coroutines.delay
 
 @Composable
-fun RainMed(modifier: Modifier = Modifier) {
+fun SleepMed(modifier: Modifier = Modifier) {
     var visible by remember { mutableStateOf(false) }
     var order by remember { mutableStateOf("") }
     //How long to inhale
-    val inhaleTime = tween<Float>(durationMillis = 5000)
-    val inhaleTimeExpand = tween<IntSize>(durationMillis = 5000)
+    val inhaleTime = tween<Float>(durationMillis = 4000)
+    val inhaleTimeExpand = tween<IntSize>(durationMillis = 4000)
     //How long to exhale
-    val exhaleTime = tween<Float>(durationMillis = 5000)
-    val exhaleTimeShrink = tween<IntSize>(durationMillis = 5000)
-    val context = LocalContext.current
-
-
-    DisposableEffect(Unit) { //The sounds stops once user navigates away (or the composable is removed from the screen)
-        val mediaPlayer = MediaPlayer.create(context, R.raw.rain)
-        mediaPlayer.start()
-
-        onDispose {
-            mediaPlayer.stop()
-            mediaPlayer.release()
-        }
-    }
+    val exhaleTime = tween<Float>(durationMillis = 7000)
+    val exhaleTimeShrink = tween<IntSize>(durationMillis = 7000)
 
     LaunchedEffect(Unit) {
-        repeat(18) { //2min
+        repeat(30) { //5/6min
             visible = true
             order = "Inhale"
-            delay(5000)
+            delay(4000)
             delay(100) //To reset time between animations so it doesn't break it
             order = "Exhale"
             visible = false
-            delay(5000)
+            delay(7000)
             delay(100)
         }
     }
@@ -126,6 +110,6 @@ fun RainMed(modifier: Modifier = Modifier) {
 
 @Composable
 @Preview
-fun PreviewRainMed() {
-    RainMed()
+fun PreviewSleepMed() {
+    SleepMed()
 }
