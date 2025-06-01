@@ -1,7 +1,5 @@
 package com.example.medistation.ui.meditationSelect.meditationsPages
 
-import android.R
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandIn
@@ -45,25 +43,25 @@ import com.example.medistation.ui.theme.itimFont
 import kotlinx.coroutines.delay
 
 @Composable
-fun CalmMed(modifier: Modifier = Modifier) {
+fun FocusMed(modifier: Modifier = Modifier) {
     var visible by remember { mutableStateOf(false) }
     var order by remember { mutableStateOf("") }
     //How long to inhale
     val inhaleTime = tween<Float>(durationMillis = 4000)
     val inhaleTimeExpand = tween<IntSize>(durationMillis = 4000)
     //How long to exhale
-    val exhaleTime = tween<Float>(durationMillis = 8000)
-    val exhaleTimeShrink = tween<IntSize>(durationMillis = 8000)
+    val exhaleTime = tween<Float>(durationMillis = 4000)
+    val exhaleTimeShrink = tween<IntSize>(durationMillis = 4000)
 
     LaunchedEffect(Unit) {
-        repeat(10) { //2min
+        repeat(15) { //2min
             visible = true
             order = "Inhale"
             delay(4000)
             delay(100) //To reset time between animations so it doesn't break it
             order = "Exhale"
             visible = false
-            delay(8000)
+            delay(4000)
             delay(100)
         }
     }
@@ -112,6 +110,6 @@ fun CalmMed(modifier: Modifier = Modifier) {
 
 @Composable
 @Preview
-fun PreviewCalmMed() {
-    CalmMed()
+fun PreviewFocusMed() {
+    FocusMed()
 }
