@@ -33,7 +33,6 @@ import com.example.medistation.ui.meditationSelect.meditations
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.itimFont
 
-
 @Composable
 fun MeditationPage(navController: NavController, modifier: Modifier = Modifier) {
     Box (

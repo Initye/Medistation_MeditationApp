@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.first
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 
 class ProfileViewModel : ViewModel() {
@@ -24,9 +26,12 @@ class ProfileViewModel : ViewModel() {
     val totalMeditationTime: Long
         get() = _totalMeditationTime.longValue
 
+
     suspend fun addMeditationTime(seconds: Long, context: Context) {
-        _totalMeditationTime.longValue += seconds
-        saveTotalTime(context, time = "totalMeditationTime", value = _totalMeditationTime.longValue)
+        val currentTotal = getTotalTime(context, "totalMeditationTime") ?: 0L
+        val newTotal = currentTotal + seconds
+        saveTotalTime(context, time = "totalMeditationTime", value = newTotal)
+        _totalMeditationTime.longValue = newTotal
     }
 
     suspend fun saveTotalTime(context: Context, time: String, value: Long) {
