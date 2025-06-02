@@ -29,24 +29,24 @@ class ProfileViewModel : ViewModel() {
 
     suspend fun addMeditationTime(seconds: Long, context: Context) {
         val currentTotal = getTotalTime(context, "totalMeditationTime") ?: 0L
-        val newTotal = currentTotal + seconds
+        val newTotal = currentTotal + seconds //To avoid the bug with resetting the value to 0
         saveTotalTime(context, time = "totalMeditationTime", value = newTotal)
         _totalMeditationTime.longValue = newTotal
     }
-
+    // Saving total time to dataStore
     suspend fun saveTotalTime(context: Context, time: String, value: Long) {
         val dataStoreKey = longPreferencesKey(time)
         context.dataStore.edit { settings ->
             settings[dataStoreKey] = value
         }
     }
-
     suspend fun getTotalTime(context: Context, time: String): Long? {
         val dataStoreKey = longPreferencesKey(time)
         val preferences = context.dataStore.data.first()
         return preferences[dataStoreKey]
     }
 
+    // Text composable for totalTime (displayed in userProfile)
     @Composable
     fun totalTimeText(context: Context, timeKey: String): String {
         var totalTime by remember { mutableStateOf<Long?>(0) }
