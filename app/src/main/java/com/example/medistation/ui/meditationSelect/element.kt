@@ -59,6 +59,43 @@ fun Element(
         }
     }
 }
+
+@Composable
+fun ProfileElement(
+    modifier: Modifier = Modifier,
+    title: String,
+    description: String,
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(BackgroundElement)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+
+        ) {
+            Text(
+                text = title,
+                fontSize = 28.sp,
+                color = Color.White,
+                modifier = Modifier.padding(start = 20.dp, top = 30.dp, bottom = 30.dp),
+                fontFamily = itimFont, fontWeight = FontWeight.Normal
+            )
+            Spacer(modifier.weight(1f))
+            Text(
+                text = description,
+                fontSize = 28.sp,
+                color = Color.White,
+                modifier = Modifier.padding(start = 40.dp, end = 20.dp),
+                fontFamily = itimFont, fontWeight = FontWeight.Normal
+            )
+        }
+    }
+}
+
+
 //Make a dataclass for elements displaying
 data class MeditationItem (
     val title: String,
@@ -78,4 +115,10 @@ val meditations = listOf(
 @Composable
 fun ElementPreview() {
     Element(onClick = {}, title = "Design", image = R.drawable.meditate)
+}
+
+@Preview
+@Composable
+fun ElementProfilePreview() {
+    ProfileElement(title="Total time", description = "10h 20m 42s")
 }
