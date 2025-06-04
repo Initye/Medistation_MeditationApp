@@ -35,9 +35,9 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
+            val sharedProfileViewModel: ProfileViewModel = viewModel()
             val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "startPage", builder = {
-
                     composable("startPage") {
                         StartPage()
                     }
@@ -45,22 +45,22 @@ class MainActivity : ComponentActivity() {
                         MeditationPage(navController)
                     }
                     composable("profilePage") {
-                        ProfilePage(navController)
+                        ProfilePage(navController,  profileViewModel = sharedProfileViewModel)
                     }
                     composable("relaxMed") {
-                        RelaxMed(profileViewModel = viewModel())
+                        RelaxMed(profileViewModel =  sharedProfileViewModel)
                     }
                     composable("calmMed") {
-                        CalmMed()
+                        CalmMed(profileViewModel = sharedProfileViewModel)
                     }
                     composable("rainMed") {
                         RainMed()
                     }
                     composable("focusMed") {
-                        FocusMed()
+                        FocusMed(profileViewModel = sharedProfileViewModel)
                     }
                     composable("sleepMed") {
-                        SleepMed()
+                        SleepMed(profileViewModel = sharedProfileViewModel)
                     }
                 })
                 //Start from startPage and go to meditationPage after delay

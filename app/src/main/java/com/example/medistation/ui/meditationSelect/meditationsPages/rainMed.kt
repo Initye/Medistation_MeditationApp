@@ -35,11 +35,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medistation.R
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.Purple80
 import com.example.medistation.ui.theme.PurpleGrey70
 import com.example.medistation.ui.theme.itimFont
+import com.example.medistation.viewModels.ProfileViewModel
 import kotlinx.coroutines.delay
 
 @Composable
@@ -53,7 +55,6 @@ fun RainMed(modifier: Modifier = Modifier) {
     val exhaleTime = tween<Float>(durationMillis = 5000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 5000)
     val context = LocalContext.current
-
 
     DisposableEffect(Unit) { //The sounds stops once user navigates away (or the composable is removed from the screen)
         val mediaPlayer = MediaPlayer.create(context, R.raw.rain)

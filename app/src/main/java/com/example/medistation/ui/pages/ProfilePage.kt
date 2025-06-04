@@ -33,6 +33,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.medistation.ui.meditationSelect.BubbleBackground
 import com.example.medistation.ui.meditationSelect.Element
+import com.example.medistation.ui.meditationSelect.MusicElement
 import com.example.medistation.ui.meditationSelect.ProfileElement
 import com.example.medistation.ui.meditationSelect.meditations
 import com.example.medistation.ui.theme.BackgroundPage
@@ -41,8 +42,7 @@ import com.example.medistation.viewModels.ProfileViewModel
 
 
 @Composable
-fun ProfilePage(navController: NavController, modifier: Modifier = Modifier) {
-    val profileViewModel: ProfileViewModel = viewModel()
+fun ProfilePage(navController: NavController, modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) {
     Box (
         modifier = modifier
             .fillMaxSize()
@@ -73,6 +73,16 @@ fun ProfilePage(navController: NavController, modifier: Modifier = Modifier) {
             Spacer(Modifier.height(40.dp))
             ProfileElement(title = "Total time:", description = profileViewModel.totalTimeText(
                 LocalContext.current, timeKey = "totalMeditationTime") )
+            Spacer(Modifier.height(40.dp))
+            Text(
+                text = "Meditation music",
+                textAlign = TextAlign.Center,
+                fontSize = 32.sp,
+                color = Color.White,
+                fontFamily = itimFont, fontWeight = FontWeight.Normal
+            )
+            Spacer(Modifier.height(20.dp))
+            MusicElement(profileViewModel = profileViewModel)
         }
     }
 }
@@ -80,5 +90,5 @@ fun ProfilePage(navController: NavController, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun ProfilePagePreview() {
-    ProfilePage(rememberNavController())
+    ProfilePage(rememberNavController(), profileViewModel = viewModel())
 }

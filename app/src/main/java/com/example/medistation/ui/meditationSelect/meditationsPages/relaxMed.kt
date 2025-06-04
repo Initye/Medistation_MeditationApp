@@ -54,6 +54,8 @@ fun RelaxMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
     val exhaleTime = tween<Float>(durationMillis = 6000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 6000)
     val context = LocalContext.current
+    profileViewModel.BackgroundMusic()
+
     LaunchedEffect(Unit) {
         repeat(12) { //2min
             visible = true

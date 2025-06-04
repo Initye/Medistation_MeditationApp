@@ -32,14 +32,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.Purple80
 import com.example.medistation.ui.theme.PurpleGrey70
 import com.example.medistation.ui.theme.itimFont
+import com.example.medistation.viewModels.ProfileViewModel
 import kotlinx.coroutines.delay
 
+
 @Composable
-fun SleepMed(modifier: Modifier = Modifier) {
+fun SleepMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) {
     var visible by remember { mutableStateOf(false) }
     var order by remember { mutableStateOf("") }
     //How long to inhale
@@ -49,8 +52,10 @@ fun SleepMed(modifier: Modifier = Modifier) {
     val exhaleTime = tween<Float>(durationMillis = 7000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 7000)
 
+    profileViewModel.BackgroundMusic()
     LaunchedEffect(Unit) {
         repeat(30) { //5/6min
+
             visible = true
             order = "Inhale"
             delay(4000)
@@ -107,5 +112,5 @@ fun SleepMed(modifier: Modifier = Modifier) {
 @Composable
 @Preview
 fun PreviewSleepMed() {
-    SleepMed()
+    SleepMed(profileViewModel = viewModel())
 }
