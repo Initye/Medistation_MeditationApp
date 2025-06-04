@@ -65,7 +65,7 @@ fun RelaxMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
             order = "Exhale"
             visible = false
             delay(6000)
-            profileViewModel.addMeditationTime(10, context)
+            profileViewModel.addMeditationTime(1L, context)
             delay(100)
         }
     }

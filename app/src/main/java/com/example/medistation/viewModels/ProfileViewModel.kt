@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewModelScope
 import com.example.medistation.R
 import kotlinx.coroutines.launch
+import kotlin.time.*
 
 
 class ProfileViewModel : ViewModel() {
@@ -59,7 +60,13 @@ class ProfileViewModel : ViewModel() {
             totalTime = getTotalTime(context, timeKey)
         }
 
-       return totalTime.toString()
+       return totalTime?.let { seconds ->
+           val hours = seconds / 3600
+           val minutes = (seconds % 3600) / 60
+           val second = seconds % 60
+           "${hours}h:${minutes}m:${second}s"
+       }
+           ?: "None"
     }
 
     // Sound composable
