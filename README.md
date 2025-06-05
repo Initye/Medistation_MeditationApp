@@ -36,20 +36,17 @@ Android SDK setup
 Git installed (optional but recommended)
 
 ## Steps
-Clone the repository
+1. Clone the repository
+   ``` https://github.com/Initye/Medistation.git ``` 
 
-Open the project in Android Studio
+2. Open the project in Android Studio  
+   - Launch Android Studio  
+   - Click "Open" and select the `medistation` folder you just cloned
 
-Click on "Open" and navigate to the medistation project folder you just cloned.
+3. Build the project  
+   - Let Android Studio sync and build the project  
+   - Install any missing SDK components or plugins if prompted
 
-Build the project
-
-Let Android Studio sync and build the project.
-
-If prompted, install any missing SDK components or plugins.
-
-Run the app
-
-Connect your Android device via USB with developer mode enabled, or start an Android emulator.
-
-Click the Run ▶️ button in Android Studio to build and launch the app on your device/emulator.
+4. Run the app  
+   - Connect your Android device via USB (with developer mode enabled), or start an Android emulator  
+   - Click the Run ▶️ button in Android Studio to build and launch the app
