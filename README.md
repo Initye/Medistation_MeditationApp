@@ -33,6 +33,7 @@ To run Medistation locally on your Android device or emulator:
 Android Studio installed
 
 Android SDK setup
+
 Git installed (optional but recommended)
 
 ## Steps
