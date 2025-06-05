@@ -45,7 +45,7 @@ import com.example.medistation.viewModels.ProfileViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun RainMed(modifier: Modifier = Modifier) {
+fun RainMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) {
     var visible by remember { mutableStateOf(false) }
     var order by remember { mutableStateOf("") }
     //How long to inhale
@@ -75,6 +75,7 @@ fun RainMed(modifier: Modifier = Modifier) {
             order = "Exhale"
             visible = false
             delay(5000)
+            profileViewModel.addMeditationTime(10L, context)
             delay(100)
         }
     }
@@ -124,5 +125,5 @@ fun RainMed(modifier: Modifier = Modifier) {
 @Composable
 @Preview
 fun PreviewRainMed() {
-    RainMed()
+    RainMed(profileViewModel = viewModel())
 }

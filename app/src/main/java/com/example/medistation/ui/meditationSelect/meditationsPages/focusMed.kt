@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
@@ -51,6 +52,7 @@ fun FocusMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
     val exhaleTime = tween<Float>(durationMillis = 4000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 4000)
     profileViewModel.BackgroundMusic()
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         repeat(15) { //2min
@@ -61,6 +63,7 @@ fun FocusMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
             order = "Exhale"
             visible = false
             delay(4000)
+            profileViewModel.addMeditationTime(8L, context)
             delay(100)
         }
     }

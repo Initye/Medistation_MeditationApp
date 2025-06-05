@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                         CalmMed(profileViewModel = sharedProfileViewModel)
                     }
                     composable("rainMed") {
-                        RainMed()
+                        RainMed(profileViewModel = sharedProfileViewModel)
                     }
                     composable("focusMed") {
                         FocusMed(profileViewModel = sharedProfileViewModel)

@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
@@ -51,7 +52,7 @@ fun CalmMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) {
     val exhaleTime = tween<Float>(durationMillis = 8000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 8000)
     profileViewModel.BackgroundMusic()
-
+    val context = LocalContext.current
     LaunchedEffect(Unit) {
         repeat(10) { //2min
             visible = true
@@ -61,6 +62,7 @@ fun CalmMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) {
             order = "Exhale"
             visible = false
             delay(8000)
+            profileViewModel.addMeditationTime(12L, context)
             delay(100)
         }
     }

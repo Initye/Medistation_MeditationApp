@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
@@ -51,11 +52,11 @@ fun SleepMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
     //How long to exhale
     val exhaleTime = tween<Float>(durationMillis = 7000)
     val exhaleTimeShrink = tween<IntSize>(durationMillis = 7000)
+    val context = LocalContext.current
 
     profileViewModel.BackgroundMusic()
     LaunchedEffect(Unit) {
         repeat(30) { //5/6min
-
             visible = true
             order = "Inhale"
             delay(4000)
@@ -63,6 +64,7 @@ fun SleepMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
             order = "Exhale"
             visible = false
             delay(7000)
+            profileViewModel.addMeditationTime(11L, context)
             delay(100)
         }
     }

@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.medistation.ui.theme.BackgroundPage
 import com.example.medistation.ui.theme.Purple80
+import com.example.medistation.ui.theme.PurpleGrey70
 import com.example.medistation.ui.theme.itimFont
 import com.example.medistation.viewModels.ProfileViewModel
 import kotlinx.coroutines.delay
@@ -65,7 +66,7 @@ fun RelaxMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
             order = "Exhale"
             visible = false
             delay(6000)
-            profileViewModel.addMeditationTime(1L, context)
+            profileViewModel.addMeditationTime(10L, context)
             delay(100)
         }
     }
@@ -99,7 +100,7 @@ fun RelaxMed(modifier: Modifier = Modifier, profileViewModel: ProfileViewModel) 
                     .size(300.dp)
                     .border(width = 2.dp, color = Purple80, shape = CircleShape),
                 onDraw =  {
-                    drawCircle(color = Color.Red)
+                    drawCircle(color = PurpleGrey70)
                 })
         }
         Text(
