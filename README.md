@@ -37,11 +37,19 @@ Git installed (optional but recommended)
 
 ## Steps
 Clone the repository
+
 Open the project in Android Studio
+
 Click on "Open" and navigate to the medistation project folder you just cloned.
+
 Build the project
+
 Let Android Studio sync and build the project.
+
 If prompted, install any missing SDK components or plugins.
+
 Run the app
+
 Connect your Android device via USB with developer mode enabled, or start an Android emulator.
+
 Click the Run ▶️ button in Android Studio to build and launch the app on your device/emulator.
