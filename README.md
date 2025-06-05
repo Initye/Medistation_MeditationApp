@@ -23,8 +23,10 @@ Simple, clean and distraction-free UI/UX optimized for focus and ease of use.
 # 📱 Screenshots
 <p float="left"> 
   <img src="https://github.com/user-attachments/assets/1e2befdf-9bd2-4bc9-adc6-0cb6df6c100f" alt="Meditation Screen" width="250" height="500"/> 
+  <img src="https://github.com/user-attachments/assets/9c816bbd-9aaf-4d44-9941-d66bd8235c51" alt="Meditation Screen gif" width="250" height="500"/> 
   <img src="https://github.com/user-attachments/assets/a67ce0c2-4b0f-4a83-8a1f-04763c6967e2" alt="Stats Screen" width="250" height="500"/> 
 </p>
+
 
 # 🚀 Installation (Android Studio)
 To run Medistation locally on your Android device or emulator:
