@@ -7,7 +7,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.platform.LocalContext
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,7 +23,6 @@ import com.example.medistation.ui.pages.ProfilePage
 import com.example.medistation.ui.pages.StartPage
 import com.example.medistation.viewModels.ProfileViewModel
 import kotlinx.coroutines.delay
-import java.util.prefs.Preferences
 
 val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
 
@@ -45,7 +43,7 @@ class MainActivity : ComponentActivity() {
                         MeditationPage(navController)
                     }
                     composable("profilePage") {
-                        ProfilePage(navController,  profileViewModel = sharedProfileViewModel)
+                        ProfilePage(profileViewModel = sharedProfileViewModel)
                     }
                     composable("relaxMed") {
                         RelaxMed(profileViewModel =  sharedProfileViewModel)

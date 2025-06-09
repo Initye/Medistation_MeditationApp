@@ -3,35 +3,28 @@ package com.example.medistation.viewModels
 import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.lifecycle.ViewModel
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
-import com.example.medistation.dataStore
-import kotlinx.coroutines.flow.first
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.medistation.R
+import com.example.medistation.dataStore
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlin.time.*
 
 
 class ProfileViewModel : ViewModel() {
     private val _totalMeditationTime = mutableLongStateOf(0L)
-    val totalMeditationTime: Long
-        get() = _totalMeditationTime.longValue
-
 
     suspend fun addMeditationTime(seconds: Long, context: Context) {
         val currentTotal = getTotalTime(context, "totalMeditationTime") ?: 0L
@@ -86,18 +79,13 @@ class ProfileViewModel : ViewModel() {
         return preferences[dataStoreKey]
     }
 
-    suspend fun loadSavedSong(context: Context) {
-        val savedSong = getCurrentSong(context)
-        currentSelectedSong.value = savedSong ?: "null"
-    }
-
     val currentSelectedSong = mutableStateOf("null")
     fun getMusicType(music: String, context: Context) {
         viewModelScope.launch {
             saveCurrentSong(context, music)
         }
         currentSelectedSong.value = music
-        Log.d("Type","changed ${music}")
+        Log.d("Type","changed $music")
     }
 
     @Composable
