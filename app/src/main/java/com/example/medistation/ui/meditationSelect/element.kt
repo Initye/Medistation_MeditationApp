@@ -18,6 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +37,12 @@ import com.example.medistation.R
 import com.example.medistation.ui.theme.itimFont
 import com.example.medistation.ui.theme.musicIcon
 import com.example.medistation.viewModels.ProfileViewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
+import com.example.medistation.ui.theme.BackgroundPage
+import com.example.medistation.ui.theme.SelectedElement
 
 @Composable
 fun Element(
@@ -109,6 +118,14 @@ fun MusicElement(
     modifier: Modifier = Modifier,
     profileViewModel: ProfileViewModel
 ) {
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        val savedSong = profileViewModel.getCurrentSong(context)
+        if (savedSong != null) {
+            profileViewModel.currentSelectedSong.value = savedSong
+        }
+    }
     // Preset for border
     fun Modifier.circularBorder(
         width: Dp = 0.4.dp,
@@ -116,7 +133,6 @@ fun MusicElement(
     ) = this
         .clip(CircleShape)
         .border(width = width, color = color, shape = CircleShape)
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -136,15 +152,18 @@ fun MusicElement(
                     modifier = modifier
                         .size(musicIcon)
                         .circularBorder()
-                        .clickable(onClick = { profileViewModel.getMusicType("null")}),
+                        .background(if(profileViewModel.currentSelectedSong.value == "null") { SelectedElement } else { BackgroundElement })
+                        .clickable(onClick = { profileViewModel.getMusicType("null", context)}),
                     painter = painterResource(R.drawable.x_icon),
+                    colorFilter = ColorFilter.tint(color = Color.Gray),
                     contentDescription = "No music",
                 )
                 Image(
                     modifier = modifier
                         .size(musicIcon)
                         .circularBorder()
-                        .clickable(onClick = { profileViewModel.getMusicType("meditation")}),
+                        .background(if(profileViewModel.currentSelectedSong.value == "meditation") { SelectedElement } else { BackgroundElement })
+                        .clickable(onClick = { profileViewModel.getMusicType("meditation", context)}),
                     painter = painterResource(R.drawable.meditation_icon),
                     contentDescription = "Meditation music",
                 )
@@ -152,7 +171,8 @@ fun MusicElement(
                     modifier = modifier
                         .size(musicIcon)
                         .circularBorder()
-                        .clickable(onClick = { profileViewModel.getMusicType("rain")}),
+                        .background(if(profileViewModel.currentSelectedSong.value == "rain") { SelectedElement } else { BackgroundElement })
+                        .clickable(onClick = { profileViewModel.getMusicType("rain", context)}),
                     painter = painterResource(R.drawable.rain_icon),
                     contentDescription = "Rain music",
                     )
@@ -160,8 +180,8 @@ fun MusicElement(
                     modifier = modifier
                         .size(musicIcon)
                         .circularBorder()
-                        .clickable(onClick = { profileViewModel.getMusicType("lofi")}),
-
+                        .background(if(profileViewModel.currentSelectedSong.value == "lofi") { SelectedElement } else { BackgroundElement })
+                        .clickable(onClick = { profileViewModel.getMusicType("lofi", context)}),
                     painter = painterResource(R.drawable.lofi_icon),
                     contentDescription = "Lofi music",
                     )

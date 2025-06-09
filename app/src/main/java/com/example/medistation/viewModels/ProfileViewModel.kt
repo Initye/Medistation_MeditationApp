@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.first
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.viewModelScope
 import com.example.medistation.R
 import kotlinx.coroutines.launch
@@ -70,8 +71,31 @@ class ProfileViewModel : ViewModel() {
     }
 
     // Sound composable
+    // Saving current song to dataStore
+    suspend fun saveCurrentSong(context: Context, song: String) {
+        val dataStoreKey = stringPreferencesKey("currentSelectedSong")
+        context.dataStore.edit { settings ->
+            settings[dataStoreKey] = song
+        }
+    }
+
+    // Getting current song from dataStore
+    suspend fun getCurrentSong(context: Context): String? {
+        val dataStoreKey = stringPreferencesKey("currentSelectedSong")
+        val preferences = context.dataStore.data.first()
+        return preferences[dataStoreKey]
+    }
+
+    suspend fun loadSavedSong(context: Context) {
+        val savedSong = getCurrentSong(context)
+        currentSelectedSong.value = savedSong ?: "null"
+    }
+
     val currentSelectedSong = mutableStateOf("null")
-    fun getMusicType(music: String) {
+    fun getMusicType(music: String, context: Context) {
+        viewModelScope.launch {
+            saveCurrentSong(context, music)
+        }
         currentSelectedSong.value = music
         Log.d("Type","changed ${music}")
     }
