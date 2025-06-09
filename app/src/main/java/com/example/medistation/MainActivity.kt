@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
         setContent {
             val sharedProfileViewModel: ProfileViewModel = viewModel()
@@ -62,11 +61,11 @@ class MainActivity : ComponentActivity() {
                     }
                 })
                 //Start from startPage and go to meditationPage after delay
-                LaunchedEffect(Unit) {
-                    delay(4000)
-                    navController.navigate("meditationPage") {
-                        popUpTo("startPage") { inclusive = true }
-                    }
+            LaunchedEffect(Unit) {
+                delay(4000)
+                navController.navigate("meditationPage") {
+                    popUpTo("startPage") { inclusive = true }
+                }
             }
         }
     }
